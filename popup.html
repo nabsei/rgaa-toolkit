@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RGAA Toolkit</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main aria-labelledby="ext-title">
+      <h1 id="ext-title">RGAA Toolkit</h1>
+
+      <fieldset>
+        <legend>Outils utilisateur</legend>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-dark" id="toggle-label">Mode sombre</label>
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Inverse les couleurs pour un affichage sombre. Les images et vidéos sont préservées. (RGAA 3.2, 3.3)"
+              aria-label="Info : inverse les couleurs, images et vidéos préservées"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-dark"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="toggle-label"
+            class="toggle-switch"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="intensity-range" id="label-intensity"
+              >Intensité du filtre sombre</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Ajuste la luminosité du filtre sombre. 100 % = contraste maximal."
+              aria-label="Info : ajuste la luminosité du filtre sombre"
+            >
+              i
+            </button>
+          </span>
+          <span class="range-inline">
+            <input
+              id="intensity-range"
+              type="range"
+              min="10"
+              max="100"
+              step="5"
+              value="90"
+              aria-labelledby="label-intensity"
+              aria-valuemin="10"
+              aria-valuemax="100"
+              aria-valuenow="90"
+              aria-valuetext="90 %"
+            />
+            <output
+              for="intensity-range"
+              id="intensity-output"
+              aria-live="polite"
+              >90 %</output
+            >
+          </span>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="apply-mode-select" id="label-apply-mode"
+              >Mode d'application</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Automatique : suit le réglage système. Toujours actif : force le mode sombre. Manuel : contrôle via le bouton ci-dessus."
+              aria-label="Info : détermine quand le mode sombre s'active"
+            >
+              i
+            </button>
+          </span>
+          <select id="apply-mode-select" aria-labelledby="label-apply-mode">
+            <option value="auto">Automatique</option>
+            <option value="always">Toujours actif</option>
+            <option value="manual">Manuel</option>
+          </select>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-text-spacing" id="label-text-spacing"
+              >Espacement du texte</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Augmente l'interligne, l'espacement des lettres et des mots pour améliorer la lisibilité. (RGAA 10.12)"
+              aria-label="Info : augmente l'interligne et l'espacement des lettres/mots"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-text-spacing"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-text-spacing"
+            class="toggle-switch"
+            data-setting="textSpacing"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-stop-animations" id="label-stop-animations"
+              >Arrêt des animations</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Stoppe les animations CSS, les transitions et masque les GIF animés. (RGAA 13.8)"
+              aria-label="Info : stoppe les animations CSS, transitions et GIF animés"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-stop-animations"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-stop-animations"
+            class="toggle-switch"
+            data-setting="stopAnimations"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-enhanced-focus" id="label-enhanced-focus"
+              >Focus amélioré</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Ajoute un contour bleu visible et une ombre sur l'élément ayant le focus clavier. (RGAA 10.7)"
+              aria-label="Info : ajoute un contour bleu visible sur l'élément au focus clavier"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-enhanced-focus"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-enhanced-focus"
+            class="toggle-switch"
+            data-setting="enhancedFocus"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-enhanced-contrast" id="label-enhanced-contrast"
+              >Contraste amélioré</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Augmente le contraste global de 30 %. Combinable avec le mode sombre. (RGAA 3.2)"
+              aria-label="Info : augmente le contraste de 30 %, combinable avec le mode sombre"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-enhanced-contrast"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-enhanced-contrast"
+            class="toggle-switch"
+            data-setting="enhancedContrast"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-mute-autoplay" id="label-mute-autoplay"
+              >Couper la lecture auto</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Met en pause et coupe le son des vidéos et audios en lecture automatique. (RGAA 4.10)"
+              aria-label="Info : coupe le son et met en pause les médias en lecture auto"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-mute-autoplay"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-mute-autoplay"
+            class="toggle-switch"
+            data-setting="muteAutoplay"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-block-refresh" id="label-block-refresh"
+              >Bloquer l'auto-actualisation</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Supprime les balises meta refresh qui rechargent automatiquement la page. (RGAA 13.1)"
+              aria-label="Info : bloque le rechargement automatique de la page"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-block-refresh"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-block-refresh"
+            class="toggle-switch"
+            data-setting="blockAutoRefresh"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-improve-reflow" id="label-improve-reflow"
+              >Améliorer le reflow</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Force le contenu à s'adapter à la largeur de l'écran, supprime le défilement horizontal. (RGAA 10.11)"
+              aria-label="Info : force le contenu à s'adapter à la largeur de l'écran"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-improve-reflow"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-improve-reflow"
+            class="toggle-switch"
+            data-setting="improveReflow"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="text-zoom-select" id="label-text-zoom"
+              >Zoom texte</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Agrandit tout le texte sans modifier la mise en page globale. (RGAA 10.4)"
+              aria-label="Info : agrandit la taille du texte"
+            >
+              i
+            </button>
+          </span>
+          <select id="text-zoom-select" aria-labelledby="label-text-zoom">
+            <option value="100">100 %</option>
+            <option value="120">120 %</option>
+            <option value="150">150 %</option>
+            <option value="200">200 %</option>
+          </select>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-simplified-view" id="label-simplified-view"
+              >Vue simplifiée</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Supprime les styles CSS du site pour une lecture linéaire et épurée. (RGAA 10.2)"
+              aria-label="Info : supprime les styles CSS pour une lecture épurée"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-simplified-view"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-simplified-view"
+            class="toggle-switch"
+            data-setting="simplifiedView"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Outils développeur</legend>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-images-as-text" id="label-images-as-text"
+              >Afficher le texte alt</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Affiche le contenu de l'attribut alt sous chaque image de la page. (RGAA 1.8)"
+              aria-label="Info : affiche le texte alt sous chaque image"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-images-as-text"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-images-as-text"
+            class="toggle-switch"
+            data-setting="imagesAsText"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-underline-links" id="label-underline-links"
+              >Souligner les liens</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Force le soulignement de tous les liens pour les distinguer du texte environnant. (RGAA 10.6)"
+              aria-label="Info : force le soulignement de tous les liens"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-underline-links"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-underline-links"
+            class="toggle-switch"
+            data-setting="underlineLinks"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-skip-link" id="label-skip-link"
+              >Lien d'évitement</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Ajoute un lien « Aller au contenu principal » en haut de la page, visible uniquement au focus clavier. (RGAA 12.7)"
+              aria-label="Info : ajoute un lien d'accès rapide au contenu principal"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-skip-link"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-skip-link"
+            class="toggle-switch"
+            data-setting="skipLink"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-flag-new-window" id="label-flag-new-window"
+              >Signaler les nouvelles fenêtres</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Affiche un indicateur visuel et ajoute un aria-label sur les liens ouvrant une nouvelle fenêtre. (RGAA 13.2)"
+              aria-label="Info : signale visuellement les liens ouvrant une nouvelle fenêtre"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-flag-new-window"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-flag-new-window"
+            class="toggle-switch"
+            data-setting="flagNewWindow"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label for="toggle-force-subtitles" id="label-force-subtitles"
+              >Forcer les sous-titres</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Active automatiquement les pistes de sous-titres existantes sur les vidéos. (RGAA 4.3)"
+              aria-label="Info : active les sous-titres existants sur les vidéos"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-force-subtitles"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-force-subtitles"
+            class="toggle-switch"
+            data-setting="forceSubtitles"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+
+        <div class="control-group compact">
+          <span class="label-info">
+            <label
+              for="toggle-force-media-controls"
+              id="label-force-media-controls"
+              >Forcer les contrôles média</label
+            >
+            <button
+              class="info-btn"
+              type="button"
+              data-tooltip="Ajoute les contrôles natifs (lecture, pause, volume) sur toutes les vidéos et audios. (RGAA 4.11)"
+              aria-label="Info : ajoute les contrôles natifs sur les vidéos et audios"
+            >
+              i
+            </button>
+          </span>
+          <button
+            id="toggle-force-media-controls"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="label-force-media-controls"
+            class="toggle-switch"
+            data-setting="forceMediaControls"
+          >
+            <span class="toggle-track"
+              ><span class="toggle-thumb" aria-hidden="true"></span
+            ></span>
+            <span class="toggle-state sr-only">Désactivé</span>
+          </button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          Sites exclus
+          <button
+            class="info-btn"
+            type="button"
+            data-tooltip="Permet de désactiver l'extension sur certains sites. Le site actuel peut être exclu ou réactivé."
+            aria-label="Info : gère les sites exclus de l'extension"
+          >
+            i
+          </button>
+        </legend>
+        <button
+          id="exclude-site"
+          class="exclude-btn"
+          aria-label="Désactiver le mode sombre sur ce site"
+        >
+          Désactiver sur ce site
+        </button>
+        <ul
+          id="excluded-list"
+          class="excluded-list"
+          aria-label="Liste des sites exclus"
+          aria-hidden="true"
+        ></ul>
+      </fieldset>
+
+      <p class="info" role="status" id="status-message"></p>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
