@@ -25,7 +25,7 @@ It provides quick visual and behavioral adjustments inspired by common RGAA revi
 
 ## Compatibility
 
-- Chrome / Chromium: Manifest V3 with service worker background
+- Chrome / Chromium / Microsoft Edge: Manifest V3 with service worker background
 - Firefox: compatible build using `background.scripts`
 - Safari: compatible as a Safari Web Extension package via Xcode or App Store Connect
 
@@ -47,9 +47,11 @@ The extension does not collect, transmit, or sell user data.
 
 Load the packaged zip through AMO, or temporarily load the extension from the project directory during development.
 
-### Chrome / Chromium
+### Chrome / Chromium / Microsoft Edge
 
 Open the extensions page, enable developer mode, and load the unpacked extension from this folder.
+
+For Microsoft Edge Add-ons, the current package can be ported with minimal changes because Edge supports the Chrome extension APIs and MV3 manifest format used by this project.
 
 ### Safari
 
