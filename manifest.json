@@ -19,6 +19,7 @@
     "128": "icons/icon-128.png"
   },
   "background": {
+    "preferred_environment": ["service_worker", "document"],
     "scripts": ["background.js"],
     "service_worker": "background.js"
   },

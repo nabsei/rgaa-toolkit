@@ -27,6 +27,7 @@ It provides quick visual and behavioral adjustments inspired by common RGAA revi
 
 - Chrome / Chromium: Manifest V3 with service worker background
 - Firefox: compatible build using `background.scripts`
+- Safari: compatible as a Safari Web Extension package via Xcode or App Store Connect
 
 ## Privacy
 
@@ -49,6 +50,20 @@ Load the packaged zip through AMO, or temporarily load the extension from the pr
 ### Chrome / Chromium
 
 Open the extensions page, enable developer mode, and load the unpacked extension from this folder.
+
+### Safari
+
+Safari Web Extensions use the same HTML, CSS, JavaScript, and manifest files, but Safari packages them as an app extension.
+
+Apple provides two supported paths:
+
+1. Convert this folder into a Safari Web Extension project with Xcode's converter.
+2. Package the extension for Safari through App Store Connect.
+
+Relevant Apple documentation:
+
+- Safari Web Extensions: https://developer.apple.com/documentation/safariservices/safari-web-extensions
+- Safari extension packaging and conversion: https://developer.apple.com/safari/extensions/
 
 ## Notes
 
